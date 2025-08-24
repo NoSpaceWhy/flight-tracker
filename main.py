@@ -1,4 +1,5 @@
 from flight import flightRQ
+flightsData = None
 
 # the UI
 import pygame
@@ -11,19 +12,19 @@ pygame.init()
 pygame.font.init()
 
 screen = pygame.display.set_mode((900, 650))
-pygame.display.set_caption("Flight Data Fetcher")
+pygame.display.set_caption("random flight tracker")
 
 
 info = pygame.font.Font(None, 50)  # None = default font, 50 = size
 # Render the text
-info_text = info.render("This is a flight tracker", True, (255, 255, 255))  # White text
+info_text = info.render("This is a random flight tracker which is text based", True, white)  # White text
 # Get the rectangle of the text
 text_rect = info_text.get_rect()  # Center on screen
 
 
 info_2 = pygame.font.Font(None, 50)  # None = default font, 50 = size
 # Render the text
-info_2_text = info_2.render("To track your flights or just see", True, (255, 255, 255))  # White text
+info_2_text = info_2.render("To track random flights.\n\nClick the reload button", True, white)  # White text
 # Get the rectangle of the text
 info_2_rect = info_2_text.get_rect()  # Center on screen
 
@@ -51,13 +52,23 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+
+    
+
     # Fill the screen with black
     screen.fill((0, 0, 0))
 
     # the text to understanding how it works to see the flights
     screen.blit(info_text, top_left)
     screen.blit(info_2_text, (0, 40))
-
+    
+    
+    flight = pygame.font.Font(None, 40)
+    flight_text = flight.render(flightsData, True, white)
+    flight_rect = flight_text.get_rect()
+    
+    screen.blit(flight_text, (0, 300))
+    
     pygame.draw.rect(screen, refresh_colour, refresh_rect, 3)
     
     screen.blit(refresh, refresh_rect)
@@ -67,8 +78,9 @@ while running:
 
     if refresh_rect_mCollide:
         if event.type == pygame.MOUSEBUTTONDOWN:
+            # this is the flight data it needs to be updated when the button is pressed
             flightsData = flightRQ()
-            print(flightsData)
+            screen.blit(flight_text, (0, 300))
     # Update the display
     pygame.display.flip()
 
