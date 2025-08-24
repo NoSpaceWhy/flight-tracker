@@ -38,7 +38,7 @@ refresh_colour = (255, 0, 0)  # Red
 refresh = pygame.image.load("reload.jpeg").convert_alpha()
 refresh = pygame.transform.scale(refresh, (80, 80))  # Resize to fit box
 
-refresh_box = refresh.Rect()  # (x, y, width, height)
+refresh_box = refresh.get_rect(topright=(735, 122))  # (x, y, width, height)
 
 # Center sprite inside the box
 refresh_rect = refresh.get_rect(center=refresh_box.center)
@@ -72,6 +72,6 @@ while running:
     # Update the display
     pygame.display.flip()
 
-    print(mos_pos)
+    # print(mos_pos)
     
 pygame.quit()
