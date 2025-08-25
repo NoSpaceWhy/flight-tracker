@@ -56,7 +56,7 @@ while running:
     
 
     # Fill the screen with black
-    screen.fill((0, 0, 0))
+    screen.fill(black)
 
     # the text to understanding how it works to see the flights
     screen.blit(info_text, top_left)
